@@ -1,0 +1,27 @@
+.not-first-in-group {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.not-last-in-group {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+div[data-sender='user'] {
+  justify-content: flex-end;
+
+  p {
+    background-color: white;
+    color: black;
+  }
+}
+
+div[data-sender='assistant'] {
+  justify-content: flex-start;
+
+  p {
+    background-color: #4b5563;
+    color: white;
+  }
+}
