@@ -1,7 +1,7 @@
 export default function Globe({
   height = 22,
   width = 22,
-  color = "#777",
+  color = "currentColor",
   ...props
 }: React.SVGAttributes<SVGElement>) {
   return (

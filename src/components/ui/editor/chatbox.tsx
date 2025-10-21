@@ -65,14 +65,6 @@ function getLLMSessionOnce() {
 export default function Chatbox(props: React.HTMLAttributes<HTMLDivElement>) {
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const [optimisticMessages, addOptimistic] = useOptimistic(
-    messages,
-    (state, newMessage: Message) => [
-      ...state,
-      { ...newMessage, content: newMessage.content + ' (processing...)' },
-    ]
-  );
-
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const llmSessionRef = useRef<LanguageModel | null>(null);
 
@@ -159,12 +151,8 @@ export default function Chatbox(props: React.HTMLAttributes<HTMLDivElement>) {
 
     e.currentTarget.reset();
 
-    startTransition(() => {
-      addOptimistic(newMessage);
-    });
-
     await new Promise(res => setTimeout(res, 250)); // fake delay
-    
+  
     setMessages(prev => [...prev, newMessage]);
 
     streamResponse(input);
@@ -175,14 +163,15 @@ export default function Chatbox(props: React.HTMLAttributes<HTMLDivElement>) {
     <section className='flex h-full flex-col-reverse text-white pb-2 overflow-y-hidden'>
       <form
         onSubmit={createMessage}
-        className='flex flex-col items-start bg-gray-800 px-4 py-3 gap-2 h-max mx-2 rounded-3xl'
+        className='flex flex-col items-start bg-gray text-text px-4 py-3 gap-2 h-max mx-2 rounded-3xl relative
+        before:content-[""] before:block before:h-1/2 before:w-full before:absolute before:top-[-50%] before:left-0 before:bg-linear-to-t before:from-background before:to-transparent'
       >
         <textarea
           ref={inputRef}
           onKeyDown={enterSubmit}
           name='input'
           placeholder='Prompt your application here...'
-          className='font-sans text-sm outline-none resize-none w-full scrollbar-hide'
+          className='font-sans text-sm outline-none resize-none w-full scrollbar-hide placeholder:text-gray-400'
           rows={4}
         />
 
@@ -195,8 +184,8 @@ export default function Chatbox(props: React.HTMLAttributes<HTMLDivElement>) {
         </ul>
       </form>
 
-      <div className='flex flex-col gap-2 p-2 h-[calc(100vh-251px)] overflow-y-scroll' {...props}>
-        {optimisticMessages.map((msg, idx, arr) => {
+      <div className='flex flex-col gap-2 pb-6 pt-2 px-2 h-[calc(100vh-251px)] overflow-y-scroll' {...props}>
+        {messages.map((msg, idx, arr) => {
           const prev = arr[idx - 1];
           const next = arr[idx + 1];
 
@@ -204,7 +193,7 @@ export default function Chatbox(props: React.HTMLAttributes<HTMLDivElement>) {
           const isLastInGroup = !next || next.sender !== msg.sender;
 
           const paragraphClassNames = [
-            'text-sm p-2 rounded-2xl font-sans max-w-[90%] min-w-[50%] w-max',
+            'text-sm py-2 px-3 rounded-2xl font-sans max-w-[90%] min-w-[50%] w-max',
             !isFirstInGroup ? 'not-first-in-group' : '',
             !isLastInGroup ? 'not-last-in-group' : '',
           ]
@@ -217,7 +206,7 @@ export default function Chatbox(props: React.HTMLAttributes<HTMLDivElement>) {
               data-sender={msg.sender}
               className='flex w-full'
             >
-              <p
+              <div
                 className={paragraphClassNames}
                 data-typo={msg.sender === 'assistant' ? 'markdown' : ''}
                 dangerouslySetInnerHTML={{ __html: marked.parse(msg.content) }}

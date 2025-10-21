@@ -12,8 +12,11 @@ import {
 } from '@/components/icons';
 import { Editor } from '@/src/components/ui/editor';
 import { Preview } from '@/src/components/ui/preview';
+import { usePathname } from 'next/navigation';
 
 export default function Home() {
+  const pathname = usePathname();
+
   return (
     <main className='grid grid-cols-[425px_1fr] h-screen w-full overflow-hidden'>
       <aside className='flex flex-col border-r border-gray-700'>
@@ -28,7 +31,7 @@ export default function Home() {
           </div>
 
           <button className='flex flex-1'>
-            <Play />
+            <Play color='#777' />
           </button>
         </Editor.List>
 
@@ -38,35 +41,35 @@ export default function Home() {
           direction='horizontal'
           justify='between'
         >
-          <Editor.List nostyle direction='horizontal' gap={4}>
-            <a href='#'>
+          <Editor.List nostyle direction='horizontal' spacing={3}>
+            <a href='#/chat' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/chat')}>
               <Chatbox />
             </a>
 
-            <a href='#'>
+            <a href='#/filesystem' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/filesystem')}>
               <FolderOpen />
             </a>
 
-            <a href='#'>
+            <a href='#/database' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/database')}>
               <Database />
             </a>
 
-            <a href='#'>
+            <a href='#/layers' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/layers')}>
               <Layers />
             </a>
 
-            <a href='#'>
+            <a href='#/search' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/search')}>
               <MagnifyingGlass />
             </a>
 
-            <a href='#'>
+            <a href='#/debugger' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/debugger')}>
               <Bug />
             </a>
           </Editor.List>
 
           <Editor.List nostyle direction='horizontal'>
             <button>
-              <SidebarCollapsableRightIcon />
+              <SidebarCollapsableRightIcon color='#777' />
             </button>
           </Editor.List>
         </Editor.List>

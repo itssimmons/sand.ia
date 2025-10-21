@@ -1,7 +1,7 @@
 export default function SidebarCollapsableRightIcon({
   height = 24,
   width = 24,
-  color = "#777",
+  color = "currentColor",
   ...props
 }: React.SVGAttributes<SVGElement>) {
   return (

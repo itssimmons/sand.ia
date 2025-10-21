@@ -1,7 +1,7 @@
 export default function ArrowUpward({
-  color = "#46464A",
-  height = 22,
   width = 22,
+  height = 22,
+  color = 'currentColor',
   ...props
 }: React.SVGProps<SVGSVGElement>) {
   return (

@@ -1,7 +1,7 @@
 export default function MagnifyingGlass({
   height = 22,
   width = 22,
-  color = "#777",
+  color = "currentColor",
   ...props
 }: React.SVGProps<SVGSVGElement>) {
   return (

@@ -1,7 +1,7 @@
 export default function Database({
   width = 22,
   height = 22,
-  color = "#777",
+  color = "currentColor",
   ...props
 }: React.SVGAttributes<SVGElement>) {
   return (

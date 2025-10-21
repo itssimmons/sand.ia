@@ -1,5 +1,5 @@
 /* Markdown Typography */
-p[data-typo="markdown"] {
+div[data-typo="markdown"] {
   font-family: var(--font-sans);
   color: var(--color-text);
   line-height: 1.6;

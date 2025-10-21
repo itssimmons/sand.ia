@@ -3,7 +3,7 @@ export default function UrlBar(
 ) {
   return (
     <span
-      className="rounded-lg flex items-center justify-center py-1 min-w-[300px] bg-gray-700 text-sm text-gray-400 px-2 overflow-hidden text-ellipsis"
+      className="rounded-lg flex items-center justify-center py-1 min-w-[300px] bg-gray text-sm text-gray-400 px-2 overflow-hidden text-ellipsis"
       {...props}
     >
       {props.uri}

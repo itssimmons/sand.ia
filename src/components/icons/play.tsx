@@ -1,7 +1,7 @@
 export default function Play({
   height = 26,
   width = 26,
-  color = "#777",
+  color = "currentColor",
   ...props
 }: React.SVGAttributes<SVGElement>) {
   return (

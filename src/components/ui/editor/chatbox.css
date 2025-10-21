@@ -11,17 +11,17 @@
 div[data-sender='user'] {
   justify-content: flex-end;
 
-  p {
-    background-color: white;
-    color: black;
+  > div {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
   }
 }
 
 div[data-sender='assistant'] {
   justify-content: flex-start;
 
-  p {
-    background-color: #4b5563;
-    color: white;
+  > div {
+    background-color: var(--color-gray);
+    color: var(--color-text);
   }
 }

@@ -1,7 +1,7 @@
 export default function Reload({
   height = 18,
   width = 18,
-  color = "#777",
+  color = "currentColor",
   ...props
 }: React.SVGAttributes<SVGElement>) {
   return (
