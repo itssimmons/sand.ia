@@ -1,4 +1,4 @@
-import { Children, JSX, useMemo } from 'react';
+import { Children, type JSX, useMemo } from 'react';
 
 interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
   bordered?:

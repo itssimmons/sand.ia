@@ -1,22 +1,13 @@
+import { Activity, Suspense } from 'react';
 import Image from 'next/image';
 
-import {
-  Bug,
-  Chatbox,
-  Database,
-  FolderOpen,
-  Layers,
-  MagnifyingGlass,
-  Play,
-  SidebarCollapsableRightIcon,
-} from '@/components/icons';
-import { Editor } from '@/src/components/ui/editor';
-import { Preview } from '@/src/components/ui/preview';
-import { usePathname } from 'next/navigation';
+import { Play, SidebarCollapsableRightIcon } from '@/components/icons';
+import { Editor } from '@/components/ui/editor';
+import { Preview } from '@/components/ui/preview';
+import TabLinks from '@/src/components/client/routing';
+import Tabs from '@/src/components/client/tabs';
 
 export default function Home() {
-  const pathname = usePathname();
-
   return (
     <main className='grid grid-cols-[425px_1fr] h-screen w-full overflow-hidden'>
       <aside className='flex flex-col border-r border-gray-700'>
@@ -41,31 +32,7 @@ export default function Home() {
           direction='horizontal'
           justify='between'
         >
-          <Editor.List nostyle direction='horizontal' spacing={3}>
-            <a href='#/chat' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/chat')}>
-              <Chatbox />
-            </a>
-
-            <a href='#/filesystem' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/filesystem')}>
-              <FolderOpen />
-            </a>
-
-            <a href='#/database' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/database')}>
-              <Database />
-            </a>
-
-            <a href='#/layers' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/layers')}>
-              <Layers />
-            </a>
-
-            <a href='#/search' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/search')}>
-              <MagnifyingGlass />
-            </a>
-
-            <a href='#/debugger' className='text-gray-500 hover:text-primary' aria-selected={currentPath.endsWith('/debugger')}>
-              <Bug />
-            </a>
-          </Editor.List>
+          <TabLinks />
 
           <Editor.List nostyle direction='horizontal'>
             <button>
@@ -74,7 +41,7 @@ export default function Home() {
           </Editor.List>
         </Editor.List>
 
-        <Editor.Chatbox />
+        <Tabs />
       </aside>
 
       <section>
